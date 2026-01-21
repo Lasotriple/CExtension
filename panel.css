@@ -1,0 +1,671 @@
+/* 擴充工具面板 */
+#cext-panel {
+    position: fixed;
+    top: 6px;
+    right: 6px;
+    z-index: 2147483647;
+    background: #1f2937;
+    color: #fff;
+    border-radius: 8px;
+    padding: 10px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
+    width: 220px;
+    font-family: sans-serif;
+    font-size: 12px;
+    -webkit-user-drag: none;
+    user-select: none;
+    /* 移除 touch-action: none，避免影響頁面其他元素的觸控事件 */
+    pointer-events: auto;
+}
+
+/* 拖曳手把（底部） */
+.cext-drag-handle {
+    margin: 10px auto 0;
+    width: 28px;
+    height: 4px;
+    border-radius: 2px;
+    background: #9ca3af;
+    cursor: grab;
+    transition: background 0.2s;
+    -webkit-user-drag: none;
+    user-select: none;
+    /* 只在拖曳手把上使用 touch-action: none，不影響頁面其他元素 */
+    touch-action: none;
+    pointer-events: auto;
+}
+
+.cext-drag-handle:hover {
+    background: #e5e7eb;
+}
+
+#cext-panel.dragging {
+    cursor: grabbing;
+}
+
+/* 收合手把（面板左側） */
+.cext-collapse-handle {
+    position: absolute;
+    left: -16px;
+    top: 8px;
+    width: 16px;
+    height: 40px;
+    border: none;
+    border-top-left-radius: 6px;
+    border-bottom-left-radius: 6px;
+    background: #6b7280;
+    cursor: pointer;
+    padding: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 2px 0 4px rgba(0, 0, 0, 0.25);
+}
+
+.cext-collapse-handle::before {
+    content: "▶";
+    font-size: 8px;
+    line-height: 1;
+    color: rgb(230, 230, 235);
+}
+
+.cext-collapse-handle:hover {
+    background: #878e99;
+    box-shadow: 3px 0 6px rgba(0, 0, 0, 0.35);
+}
+
+/* 展開手把（網頁右側）*/
+.cext-expand-handle {
+    position: fixed;
+    top: 6px;
+    right: 0;
+    width: 18px;
+    height: 54px;
+    border: none;
+    border-top-left-radius: 6px;
+    border-bottom-left-radius: 6px;
+    background: #6b7280;
+    cursor: pointer;
+    display: none;
+    z-index: 2147483647;
+    padding: 0;
+    align-items: center;
+    justify-content: center;
+    box-shadow: -2px 0 4px rgba(0, 0, 0, 0.25);
+}
+
+.cext-expand-handle::before {
+    content: "◀";
+    font-size: 10px;
+    line-height: 1;
+    color: #e5e7eb;
+}
+
+.cext-expand-handle:hover {
+    background: #878e99;
+    box-shadow: -3px 0 6px rgba(0, 0, 0, 0.35);
+}
+
+/* 面板移入移出動畫 */
+#cext-panel.animate-right {
+    transition: right .30s ease;
+}
+
+.cext-noselect,
+.cext-noselect * {
+    user-select: none !important;
+}
+
+.cext-col {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* Flask 功能區塊 */
+#cext-flask-features {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* Publish 按鈕行 */
+.cext-publish-row {
+    position: relative;
+}
+
+/* Tab 區域 */
+.cext-tab-area {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    border-radius: 8px;
+    background: #374151;
+    padding: 6px;
+}
+
+.cext-publish {
+    width: 100%;
+    font-size: 14px;
+    padding: 10px;
+    border: none;
+    border-radius: 8px;
+    background: rgb(40, 100, 235);
+    color: white;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.cext-publish:hover {
+    background: rgb(30, 80, 185);
+}
+
+.cext-toggle {
+    position: absolute;
+    right: 6px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 14px;
+    padding: 5px;
+    border: none;
+    border-radius: 4px;
+    background: rgb(100, 150, 230);
+    color: rgb(230, 230, 235);
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.cext-toggle:hover {
+    background: rgb(30, 80, 185);
+}
+
+.cext-logs {
+    font-size: 14px;
+    padding: 10px;
+    border: none;
+    border-radius: 8px;
+    background: #059669;
+    color: white;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.cext-logs:hover {
+    background: #047857;
+}
+
+.cext-batch-test {
+    font-size: 14px;
+    padding: 10px;
+    border: none;
+    border-radius: 8px;
+    background: #7c3aed;
+    color: white;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.cext-batch-test:hover {
+    background: #6d28d9;
+}
+
+/* AutoLogin 功能區塊 */
+#cext-auto-login-features {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* AutoLogin 按鈕行 */
+.cext-auto-login-row {
+    position: relative;
+}
+
+.cext-auto-login {
+    width: 100%;
+    font-size: 14px;
+    padding: 10px;
+    border: none;
+    border-radius: 8px;
+    background: #e91e63;
+    color: white;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.cext-auto-login:hover {
+    background: #c2185b;
+}
+
+.cext-auto-login:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.cext-auto-login-toggle {
+    position: absolute;
+    right: 6px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 14px;
+    padding: 5px;
+    border: none;
+    border-radius: 4px;
+    background: #f06292;
+    color: rgb(230, 230, 235);
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.cext-auto-login-toggle:hover {
+    background: #c2185b;
+}
+
+/* AutoLogin 輸入區域 */
+.cext-auto-login-area {
+    display: flex;
+    flex-direction: column;
+    border-radius: 8px;
+    background: #374151;
+    padding: 6px;
+}
+
+.cext-auto-login-inputs {
+    display: flex;
+    flex-direction: column;
+}
+
+.cext-auto-login-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 6px;
+}
+
+.cext-auto-login-item input {
+    flex: 1;
+    min-width: 0;
+    padding: 6px;
+    border-radius: 4px;
+    border: 1px solid #4b5563;
+    background: #1f2937;
+    color: #fff;
+    font-size: 12px;
+    box-sizing: border-box;
+    height: auto;
+    line-height: 1.2;
+}
+
+.cext-auto-login-item input::placeholder {
+    color: #9ca3af;
+}
+
+.cext-auto-login-item input:focus {
+    outline: none;
+    border-color: #e91e63;
+}
+
+/* AutoLogin 憑證管理區域 */
+.cext-auto-login-manage-area {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.cext-auto-login-manage-section {
+    background: #2b3442;
+    border: 1px solid #4b5563;
+    border-radius: 8px;
+    padding: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.02);
+}
+
+.cext-auto-login-manage-section.compact {
+    gap: 6px;
+    padding: 8px 8px 10px;
+}
+
+.cext-auto-login-manage-section-title {
+    font-size: 12px;
+    font-weight: 700;
+    color: #e5e7eb;
+    letter-spacing: 0.3px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.cext-auto-login-manage-section-title::before {
+    content: "";
+    width: 4px;
+    height: 12px;
+    border-radius: 2px;
+    background: #e91e63;
+    display: inline-block;
+}
+
+.cext-auto-login-manage-divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #4b5563 20%, #4b5563 80%, transparent);
+    margin: 3px 0;
+}
+
+.cext-auto-login-manage-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.cext-auto-login-manage-form-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 6px;
+}
+
+.cext-auto-login-manage-form-item>div {
+    font-size: 12px;
+    color: #d1d5db;
+}
+
+.cext-auto-login-manage-form-item input {
+    flex: 1;
+    min-width: 0;
+    padding: 6px;
+    border-radius: 4px;
+    border: 1px solid #4b5563;
+    background: #1f2937;
+    color: #fff;
+    font-size: 12px;
+    box-sizing: border-box;
+    height: auto;
+    line-height: 1.2;
+}
+
+.cext-auto-login-manage-form-item input::placeholder {
+    color: #9ca3af;
+}
+
+.cext-auto-login-manage-form-item input:focus {
+    outline: none;
+    border-color: #e91e63;
+}
+
+.cext-auto-login-manage-form-buttons {
+    display: flex;
+    gap: 8px;
+    margin-top: 4px;
+}
+
+.cext-auto-login-manage-btn {
+    flex: 1;
+    padding: 6px 12px;
+    border: none;
+    border-radius: 4px;
+    background: #e91e63;
+    color: white;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: bold;
+    margin-top: 12px;
+    margin-left: 6px;
+}
+
+.cext-auto-login-manage-btn:hover {
+    background: #c2185b;
+}
+
+.cext-auto-login-manage-function-btn {
+    flex: 1;
+    padding: 6px 12px;
+    border: none;
+    border-radius: 4px;
+    background: #e91e63;
+    color: white;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.cext-auto-login-manage-function-btn:hover {
+    background: #c2185b;
+}
+
+.cext-auto-login-manage-function-btn-danger {
+    background: #dc2626;
+}
+
+.cext-auto-login-manage-function-btn-danger:hover {
+    background: #b91c1c;
+}
+
+.cext-auto-login-manage-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.cext-auto-login-manage-actions.single .cext-auto-login-manage-function-btn {
+    width: 100%;
+}
+
+.cext-auto-login-manage-actions.triple .cext-auto-login-manage-function-btn {
+    flex: 1;
+}
+
+.cext-pending {
+    display: none;
+    flex-direction: column;
+    gap: 8px;
+    background: #374151;
+    padding: 8px;
+    border-radius: 8px;
+    max-height: 200px;
+    overflow: hidden;
+}
+
+.cext-pending-title {
+    font-size: 13px;
+    font-weight: 700;
+    color: #e5e7eb;
+}
+
+.cext-pending-list {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    max-height: 160px;
+    overflow-y: auto;
+}
+
+.cext-pending-item {
+    background: #1f2937;
+    border-radius: 6px;
+    padding: 6px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.35);
+}
+
+.cext-pending-meta {
+    font-size: 12px;
+    color: #d1d5db;
+    line-height: 1.4;
+    word-break: break-word;
+}
+
+.cext-pending-meta-sub {
+    font-size: 11px;
+    color: #9ca3af;
+}
+
+.cext-pending-actions {
+    display: flex;
+    gap: 6px;
+}
+
+.cext-pending-actions button {
+    flex: 1;
+    padding: 4px 6px;
+    border: none;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    color: #ffffff;
+    background: #2563eb;
+    transition: opacity 0.2s;
+}
+
+.cext-pending-actions button[data-style="secondary"] {
+    background: #6b7280;
+}
+
+.cext-pending-actions button:hover {
+    opacity: 0.85;
+}
+
+
+.cext-tab-group {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 6px;
+    background: #374151;
+    border-radius: 8px;
+    color: #ffffff;
+}
+
+.cext-tab {
+    padding: 6px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+    background: #374151;
+    color: #fff;
+    text-align: center;
+    font-weight: bold;
+}
+
+.cext-tab.shift-mode {
+    background: #7c3aed !important;
+    color: #fff;
+}
+
+.cext-tab.inactive {
+    background: #374151;
+    color: #fff;
+}
+
+.cext-tab.active {
+    background: hsl(0, 87%, 63%);
+    color: #fff;
+}
+
+.cext-tab:hover:not(.active) {
+    background: #4b5563;
+}
+
+/* 下拉選單區域 */
+.cext-select-area {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-Top: 6px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.cext-select-area select {
+    flex: none;
+    width: 100%;
+    padding: 3px;
+    border-radius: 4px;
+    border: none;
+    font-weight: 400;
+    background: #374151;
+    color: #fff;
+    box-sizing: border-box;
+}
+
+.cext-select-area select option {
+    background: #1f2937;
+    color: #fff;
+}
+
+/* Synchronous 兩個 select 的容器 */
+.cext-sync-selects {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.cext-sync-item {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 3px;
+    gap: 6px;
+}
+
+.cext-sync-item-label {
+    font-weight: bold;
+    background: #ffae21;
+    border-radius: 4px;
+    padding: 1px 6px;
+}
+
+.cext-sync-selects select {
+    flex: 1;
+    min-width: 0;
+    padding: 3px;
+    border-radius: 4px;
+    border: none;
+    font-weight: 400;
+    background: #374151;
+    color: #fff;
+    box-sizing: border-box;
+}
+
+.cext-sync-selects select option {
+    background: #1f2937;
+    color: #fff;
+}
+
+/* 送出按鈕 */
+.cext-tab-submit {
+    padding: 3px 6px;
+    border: none;
+    border-radius: 4px;
+    background: rgb(40, 100, 235);
+    color: white;
+    cursor: pointer;
+    align-self: center;
+    width: 100%;
+    font-weight: bold;
+}
+
+.cext-tab-submit:hover {
+    background: rgb(30, 80, 185);
+}
+
+/* logsView送出時間 */
+.cext-timestamp-input {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 4px 8px;
+    border-radius: 4px;
+    border: 1px solid #d1d5db;
+    color: rgb(50, 50, 50);
+}
+
+.cext-timestamp-input::placeholder {
+    color: rgba(50, 50, 50, 0.5)
+}

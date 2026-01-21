@@ -1,0 +1,111 @@
+<button class="cext-collapse-handle" title="收合／展開"></button>
+<div class="cext-col">
+    <div id="cext-flask-features">
+        <div class="cext-publish-row">
+            <button class="cext-publish" data-action="publish">外掛上傳</button>
+            <button class="cext-toggle" data-action="toggle">☰</button>
+        </div>
+        <div class="cext-tab-area" style="display:none;">
+            <div class="cext-tab-group">
+                <button class="cext-tab" data-action="pass">審核</button>
+                <button class="cext-tab" data-action="deploy">部署</button>
+                <button class="cext-tab" data-action="synchronous">同步</button>
+            </div>
+            <div class="cext-select-area" style="display:none;">
+                <select id="cext-select"></select>
+                <div class="cext-sync-selects" style="display:none;">
+                    <div class="cext-sync-item">
+                        <div class="cext-sync-item-label">來源</div>
+                        <select id="cext-select-src"></select>
+                    </div>
+                    <div class="cext-sync-item">
+                        <div class="cext-sync-item-label">目標</div>
+                        <select id="cext-select-dst"></select>
+                    </div>
+                </div>
+                <div class="cext-extra-area" style="display:none;">
+                    <input id="cext-timestamp" class="cext-timestamp-input" type="text" placeholder="input timestamp" />
+                </div>
+                <button id="cext-submit" class="cext-tab-submit">送出</button>
+            </div>
+        </div>
+    </div>
+    <button class="cext-logs" data-action="logs">即時日誌</button>
+    <button class="cext-batch-test" data-action="batch-test">批次測試</button>
+    <div id="cext-auto-login-features" style="display:none;">
+        <div class="cext-auto-login-row">
+            <button class="cext-auto-login" data-action="auto-login">自動登入</button>
+            <button class="cext-auto-login-toggle" data-action="auto-login-toggle">☰</button>
+        </div>
+        <div class="cext-auto-login-area" style="display:none;">
+            <form class="cext-auto-login-inputs" onsubmit="return false;" style="display:none;">
+                <div class="cext-auto-login-item">
+                    <div>帳號</div>
+                    <input id="cext-auto-login-username" name="cext-auto-login-username" type="text" placeholder="輸入帳號"
+                        autocomplete="off" autocapitalize="none" autocorrect="off" spellcheck="false"
+                        data-lpignore="true" data-1p-ignore="true" data-form-type="other" />
+                </div>
+                <div class="cext-auto-login-item">
+                    <div>密碼</div>
+                    <input id="cext-auto-login-password" name="cext-auto-login-password" type="password"
+                        placeholder="輸入密碼" autocomplete="new-password" autocapitalize="none" autocorrect="off"
+                        spellcheck="false" data-lpignore="true" data-1p-ignore="true" data-form-type="other" />
+                </div>
+            </form>
+            <!-- 憑證管理區域 -->
+            <div class="cext-auto-login-manage">
+                <div class="cext-auto-login-manage-area" style="display:block;">
+                    <div class="cext-auto-login-manage-section">
+                        <div class="cext-auto-login-manage-section-title">新增帳號</div>
+                        <form class="cext-auto-login-manage-form" onsubmit="return false;">
+                            <div class="cext-auto-login-manage-form-item">
+                                <div>名稱</div>
+                                <input id="cext-auto-login-manage-name" type="text" placeholder="輸入名稱"
+                                    autocomplete="off" />
+                            </div>
+                            <div class="cext-auto-login-manage-form-item">
+                                <div>URL</div>
+                                <input id="cext-auto-login-manage-url" type="text" placeholder="輸入登入 URL"
+                                    autocomplete="off" />
+                            </div>
+                            <div class="cext-auto-login-manage-form-item">
+                                <div>帳號</div>
+                                <input id="cext-auto-login-manage-loginname" type="text" placeholder="輸入帳號"
+                                    autocomplete="off" />
+                            </div>
+                            <div class="cext-auto-login-manage-form-item">
+                                <div>密碼</div>
+                                <input id="cext-auto-login-manage-password" type="password" placeholder="輸入密碼"
+                                    autocomplete="new-password" />
+                            </div>
+                        </form>
+                        <div class="cext-auto-login-manage-actions single">
+                            <button type="button" class="cext-auto-login-manage-function-btn"
+                                data-action="auto-login-manage-add">新增</button>
+                        </div>
+                    </div>
+                    <div class="cext-auto-login-manage-divider"></div>
+                    <div class="cext-auto-login-manage-section compact">
+                        <div class="cext-auto-login-manage-section-title">管理帳號</div>
+                        <input type="file" id="cext-auto-login-manage-import-file" accept=".json"
+                            style="display:none;" />
+                        <div class="cext-auto-login-manage-actions triple">
+                            <button type="button" class="cext-auto-login-manage-function-btn"
+                                data-action="auto-login-manage-import-json">匯入</button>
+                            <button type="button" class="cext-auto-login-manage-function-btn"
+                                data-action="auto-login-manage-export">匯出</button>
+                            <button type="button"
+                                class="cext-auto-login-manage-function-btn cext-auto-login-manage-function-btn-danger"
+                                data-action="auto-login-manage-clear">清除</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="cext-batch-pending" class="cext-pending" style="display:none;">
+        <div class="cext-pending-title">暫存批次結果</div>
+        <div id="cext-batch-pending-list" class="cext-pending-list"></div>
+    </div>
+</div>
+<div class="cext-drag-handle" title="拖曳移動"></div>

@@ -1,0 +1,84 @@
+{
+    "delete": [
+        "com.intumit.system.monitor.timer.MonitorSystemTimerTask.run",
+        "com.intumit.system.monitor.service.MonitorDataProduceServiceImpl.produceSystemDataAndSave",
+        "com.intumit.system.monitor.MonitorUtils.getServerIndex",
+        "com.hazelcast.logging.impl.LoggingServiceImpl$DefaultLogger",
+        "com.intumit.solr.robot.connector.line.richmenu.thread.LineRIchMenuCheckTask.run",
+        "com.intumit.solr.admin.AdminUser.encIntumitPswd",
+        "com.intumit.solr.util.WiSeUtils.httpRequest",
+        "com.intumit.solr.robot.QAUtil.addToUserDefinedForest",
+        "com.intumit.quartz.SyncAzureADJob",
+        "com.intumit.smartrobot.faq.impl.RedisFaqVectorServiceImpl.searchByVector(RedisFaqVectorServiceImpl.java:169)",
+        "org.springframework.web.method.HandlerMethod",
+        "/\\[INFO\\] - org\\.apache\\.solr\\.core\\.SolrCore\\.execute\\(SolrCore\\.java:(\\d+)\\) - webapp=null path=\\/(browse|select) params/",
+        "/\\[INFO\\] - com\\.intumit\\.smartrobot\\.faq\\.impl\\.RedisFaqVectorServiceImpl\\.searchByVector\\(RedisFaqVectorServiceImpl\\.java:(\\d+)\\) - (?!QA found for kid).*/",
+        "/\\[INFO\\] - com\\.intumit\\.smartrobot\\.faq\\.impl\\.SolrFaqVectorServiceImpl\\.searchByVector\\(SolrFaqVectorServiceImpl\\.java:(\\d+)\\) - faq query: dataType_s:\"FAQ_VECTOR_INDEX\" AND tenant_i:(\\d+) vector:/",
+        "/\\[INFO\\] - com\\.intumit\\.solr\\.robot\\.qarule\\.FaqVectorSearchRule\\.searchAndAddSimilarParagraphsRichMessage\\(FaqVectorSearchRule\\.java:(\\d+)\\) - FaqVectorSearchRule: (?!otherPossibleQuestions:).*/"
+    ],
+    "coating": {
+        "SolrDocument": {
+            "startLines": "/\\*{5} Oh My God \\*{5}SolrDocument\\{.* \\*{4} (\\d+.\\d+)/",
+            "endLines": null,
+            "joinLineBreak": null
+        },
+        "VectorSearchRule": {
+            "startLines": "/\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2}:\\d{3} \\[INFO\\] - com\\.intumit\\.solr\\.robot\\.qarule\\.FaqVectorSearchRule\\.searchAndAddSimilarParagraphsRichMessage\\(FaqVectorSearchRule\\.java:(\\d+)\\).*\\]/",
+            "endLines": null,
+            "joinLineBreak": null
+        },
+        "EnhancedFuzzyAnswerRule": {
+            "startLines": "/messages: \\[ChatMessage\\(role=system, content=/",
+            "endLines": "/.*\\]\\)$/",
+            "joinLineBreak": "\n"
+        },
+        "OpenAI Response": {
+            "startLines": "/\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2}:\\d{3} \\[INFO\\] - com\\.intumit\\.smartrobot\\.aigc\\.AigcApi\\.callChatCompletion\\(AigcApi\\.java:(\\d+)\\) - OpenAI response/",
+            "endLines": "/, finishDetails=null\\)\\]/",
+            "joinLineBreak": null
+        },
+        "OpenAI Embedding Skip Score": {
+            "startLines": "/^\\s*\"embedding\": \\[$/",
+            "endLines": "/^\\s*\\],$/",
+            "joinLineBreak": "\n",
+            "emitMarkers": false
+        },
+        "Azure OpenAI request": {
+            "startLines": "/\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2}:\\d{3} \\[INFO\\] - com\\.intumit\\.smartrobot\\.aigc\\.AigcApi\\.callChatCompletion\\(AigcApi\\.java:(\\d+)\\) - Azure OpenAI request/",
+            "endLines": "/, finishDetails=null\\)\\]/",
+            "joinLineBreak": null
+        },
+        "AIGC chat completion response": {
+            "startLines": "/\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2}:\\d{3} \\[INFO\\] - com\\.intumit\\.smartrobot\\.aigc\\.AigcApi\\.callChatCompletion\\(AigcApi\\.java:(\\d+)\\) - AIGC chat completion response/",
+            "endLines": "/, finishDetails=null\\)\\]/",
+            "joinLineBreak": null
+        },
+        "QA found": {
+            "startLines": "/\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2}:\\d{3} \\[INFO\\] - com\\.intumit\\.smartrobot\\.faq\\.impl\\.SolrFaqVectorServiceImpl\\.searchByVector\\(SolrFaqVectorServiceImpl\\.java:(\\d+)\\) - QA found for kid: .*$/",
+            "endLines": "/^(?!.*QA found for kid).*$/",
+            "joinLineBreak": "\n"
+        }
+    },
+    "lineReplacer": [
+        {
+            "pattern": "/\\*{5} Oh My God \\*{5}SolrDocument\\{id=COMMON_SENSE-(.*?), .*QUESTION_s=(.*?), .*?\\*{4} (\\d+.\\d+)/",
+            "script": "logsBeauty.ohMyGod"
+        },
+        {
+            "pattern": ".*com\\.intumit\\.smartrobot\\.aigc\\.AigcApi\\.callChatCompletion\\(AigcApi\\.java:(\\d+)\\) - OpenAI response.*content=(.*?), name.*/",
+            "script": "logsBeauty.openaiResponse"
+        },
+        {
+            "pattern": "/\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2}:\\d{3} \\[INFO\\] - com\\.intumit\\.solr\\.robot\\.qarule\\.FaqVectorSearchRule\\.searchAndAddSimilarParagraphsRichMessage\\(FaqVectorSearchRule\\.java:(\\d+)\\) - FaqVectorSearchRule: otherPossibleQuestions: (\\[\\{.*\\}\\])/",
+            "script": "logsBeauty.otherQuestions"
+        },
+        {
+            "pattern": "^\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2}:\\d{3} \\[INFO\\] - com\\.intumit\\.smartrobot\\.faq\\.impl\\.SolrFaqVectorServiceImpl\\.searchByVector\\(SolrFaqVectorServiceImpl\\.java:(\\d+)\\) - QA found for kid: [\\s\\S]*$",
+            "script": "logsBeauty.qaFoundBlock"
+        },
+        {
+            "pattern": "(?s)^(\\s*)\"embedding\": \\[.*?\\],\\s*$",
+            "replacement": "$1\"embedding\": [...]"
+        }
+    ]
+}

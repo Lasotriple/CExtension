@@ -1,0 +1,63 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>Logs Viewer</title>
+    <link rel="stylesheet" href="logs.css">
+</head>
+
+<body>
+    <!-- Loading 畫面 -->
+    <div id="loading-screen" class="loading-screen">
+        <div class="loading-text">
+            <span class="loading-char">L</span>
+            <span class="loading-char">o</span>
+            <span class="loading-char">a</span>
+            <span class="loading-char">d</span>
+            <span class="loading-char">i</span>
+            <span class="loading-char">n</span>
+            <span class="loading-char">g</span>
+            <span class="loading-char">.</span>
+            <span class="loading-char">.</span>
+            <span class="loading-char">.</span>
+        </div>
+    </div>
+
+    <header>
+        <div><strong>Logs Viewer</strong></div>
+        <div id="meta"></div>
+        <div style="margin-top: 8px; display: flex; gap: 8px; align-items: center; flex-wrap: wrap;">
+            <button id="control-btn"
+                style="padding: 6px 12px; background: #059669; color: white; border: none; border-radius: 4px; cursor: pointer;"
+                title="Ctrl+Enter 或 Space">開始</button>
+            <button id="beautify-toggle"
+                style="padding: 6px 12px; background: #3b82f6; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 12px;"
+                title="切換視覺模式">視覺模式</button>
+            <span style="font-size: 11px; opacity: 0.6; margin-left: auto;">Space 開始/暫停</span>
+        </div>
+    </header>
+    <div id="log"></div>
+
+    <!-- 載入所有 JavaScript 模組 -->
+    <script src="../cext.constants.js"></script>
+    <script src="../cext.context.js"></script>
+    <script src="logs-config.js"></script>
+    <script src="logs-beauty.js"></script>
+    <script src="logs-clean-rules.js"></script>
+    <script src="logs-ui-utils.js"></script>
+    <script src="logs-processor.js"></script>
+    <script src="logs-control.js"></script>
+    <script src="logs-events.js"></script>
+    <script src="logs-main.js"></script>
+
+    <!-- 載入 CEXT 模組（必須在 groovyCaller 之前載入） -->
+    <script src="../cext.constants.js"></script>
+    <script src="../cext.storage.js"></script>
+
+    <!-- 載入 Groovy 相關模組（順序重要：先 logs-file-utils 再 groovyCaller） -->
+    <script src="logs-file-utils.js"></script>
+    <script src="../groovyCaller/groovyCaller.js"></script>
+</body>
+
+</html>

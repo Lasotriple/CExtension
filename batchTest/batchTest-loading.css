@@ -1,0 +1,87 @@
+/* Loading 畫面 */
+.batch-loading-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #f9fafb;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    transition: opacity 0.5s ease-out, visibility 0.5s ease-out;
+}
+
+.batch-loading-screen.hidden {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.batch-loading-text {
+    font-size: 48px;
+    font-weight: 700;
+    color: rgb(40, 100, 235);
+    display: flex;
+    gap: 4px;
+}
+
+.batch-loading-char {
+    display: inline-block;
+    animation: bounce 1.4s ease-in-out infinite;
+}
+
+.batch-loading-char:nth-child(1) {
+    animation-delay: 0s;
+}
+
+.batch-loading-char:nth-child(2) {
+    animation-delay: 0.1s;
+}
+
+.batch-loading-char:nth-child(3) {
+    animation-delay: 0.2s;
+}
+
+.batch-loading-char:nth-child(4) {
+    animation-delay: 0.3s;
+}
+
+.batch-loading-char:nth-child(5) {
+    animation-delay: 0.4s;
+}
+
+.batch-loading-char:nth-child(6) {
+    animation-delay: 0.5s;
+}
+
+.batch-loading-char:nth-child(7) {
+    animation-delay: 0.6s;
+}
+
+.batch-loading-char:nth-child(8) {
+    animation-delay: 0.7s;
+}
+
+.batch-loading-char:nth-child(9) {
+    animation-delay: 0.8s;
+}
+
+.batch-loading-char:nth-child(10) {
+    animation-delay: 0.9s;
+}
+
+@keyframes bounce {
+
+    0%,
+    80%,
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+
+    40% {
+        transform: translateY(-20px);
+        opacity: 0.7;
+    }
+}

@@ -1,0 +1,51 @@
+{
+    "manifest_version": 3,
+    "name": "Intumit CExtension",
+    "version": "1.0.0",
+    "description": "輔助 admin portal 系統，利用原生 API 優化功能使用。",
+    "permissions": [
+        "storage"
+    ],
+    "host_permissions": [
+        "http://localhost/*"
+    ],
+    "content_scripts": [
+        {
+            "matches": [
+                "<all_urls>"
+            ],
+            "js": [
+                "cext.constants.js",
+                "cext.context.js",
+                "cext.storage.js",
+                "batchTest/batchTest-storage.js",
+                "scriptMoniter/scriptmoniter-net.js",
+                "scriptMoniter/scriptmoniter-ui.js",
+                "scriptMoniter/scriptmoniter-actions.js",
+                "groovyCaller/groovyCaller.js",
+                "autoLogin/autoLogin-storage.js",
+                "autoLogin/autoLogin.js",
+                "autoLogin/autoLogin-manager.js",
+                "cext.drag.js",
+                "cext.panel.js",
+                "cext.main.js"
+            ],
+            "css": [
+                "panel.css"
+            ],
+            "run_at": "document_idle"
+        }
+    ],
+    "web_accessible_resources": [
+        {
+            "resources": [
+                "panel.html",
+                "logs/*",
+                "batchTest/*"
+            ],
+            "matches": [
+                "<all_urls>"
+            ]
+        }
+    ]
+}

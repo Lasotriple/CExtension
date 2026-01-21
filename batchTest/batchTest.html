@@ -1,0 +1,154 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>Batch Test</title>
+    <link rel="stylesheet" href="batchTest.css">
+    <link rel="stylesheet" href="batchTest-loading.css">
+</head>
+
+<body>
+    <!-- Loading 畫面 -->
+    <div id="batch-loading-screen" class="batch-loading-screen">
+        <div class="batch-loading-text">
+            <span class="batch-loading-char">L</span>
+            <span class="batch-loading-char">o</span>
+            <span class="batch-loading-char">a</span>
+            <span class="batch-loading-char">d</span>
+            <span class="batch-loading-char">i</span>
+            <span class="batch-loading-char">n</span>
+            <span class="batch-loading-char">g</span>
+            <span class="batch-loading-char">.</span>
+            <span class="batch-loading-char">.</span>
+            <span class="batch-loading-char">.</span>
+        </div>
+    </div>
+
+    <header>
+        <div><strong>Batch Test</strong></div>
+    </header>
+
+    <div class="batch-main-layout">
+        <div id="batch-main-content" class="batch-main-content" style="display: none;">
+            <div class="batch-form-feedback-wrapper">
+                <div class="batch-form-wrapper">
+                    <div id="batch-form-channel-wrapper" class="batch-form-item">
+                        <label for="batch-input-concurrency">測試渠道</label>
+                        <select id="batch-select-channel">
+                            <option value="">請選擇</option>
+                        </select>
+                    </div>
+
+                    <div class="batch-form-row">
+                        <div class="batch-form-item-group">
+                            <div class="batch-form-item">
+                                <label for="batch-input-concurrency">同時請求數</label>
+                                <input id="batch-input-concurrency" type="number" min="1" max="10" value="3" />
+                            </div>
+                            <div class="batch-form-item">
+                                <label for="batch-input-retry-count">重跑次數</label>
+                                <input id="batch-input-retry-count" type="number" min="0" max="4" value="0" />
+                            </div>
+                            <div class="batch-form-item">
+                                <label for="batch-input-retry-answerby">特定 AnswerBy 重跑</label>
+                                <input id="batch-input-retry-answerby" type="text"
+                                    placeholder="以逗號分隔，例如: AigcChatCompletionRule,FuzzyAnswerRule"
+                                    value="" />
+                            </div>
+                            <div class="batch-form-item" id="batch-form-item-aoai-retry" style="display: none;">
+                                <label for="batch-input-aoai-retry-count">AOAI 評分重跑次數</label>
+                                <input id="batch-input-aoai-retry-count" type="number" min="0" max="4" value="1" />
+                            </div>
+                        </div>
+                        <div class="batch-form-item batch-form-buttons">
+                            <button id="batch-btn-compare-index" type="button">
+                                <span>比對編號</span>
+                                <svg class="button-icon" width="16" height="16" viewBox="0 0 16 16" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <circle cx="8" cy="8" r="7" stroke="currentColor" stroke-width="1.5" fill="none"
+                                        class="icon-outer" />
+                                    <circle cx="8" cy="8" r="5" fill="none" class="icon-middle" />
+                                    <circle cx="8" cy="8" r="3" fill="none" class="icon-inner" />
+                                </svg>
+                            </button>
+                            <button id="batch-btn-compare-answer" type="button" disabled>
+                                <span>比對答案</span>
+                                <svg class="button-icon" width="16" height="16" viewBox="0 0 16 16" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <circle cx="8" cy="8" r="7" stroke="currentColor" stroke-width="1.5" fill="none"
+                                        class="icon-outer" />
+                                    <circle cx="8" cy="8" r="5" fill="none" class="icon-middle" />
+                                    <circle cx="8" cy="8" r="3" fill="none" class="icon-inner" />
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="batch-form-item">
+                        <div id="batch-table-container" class="batch-table-container">
+                            <table id="batch-content-table" class="batch-content-table">
+                                <thead>
+                                    <tr id="batch-table-header">
+                                        <th>序號</th>
+                                        <th>測試問句</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="batch-table-body">
+                                    <tr>
+                                        <td style="text-align: center;">1</td>
+                                        <td contenteditable="true"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="batch-form-actions">
+                        <button id="batch-btn-submit" disabled>開始測試</button>
+                    </div>
+                </div>
+                <div id="batch-feedback-area" class="batch-feedback-area" style="display: none;">
+                    <div class="batch-feedback-status">
+                        <div class="batch-feedback-text" id="batch-feedback-text"></div>
+                        <div class="batch-progress-container">
+                            <div class="batch-progress-bar" id="batch-progress-bar"></div>
+                        </div>
+                    </div>
+                    <div class="batch-feedback-details" id="batch-feedback-details"></div>
+                </div>
+            </div>
+        </div>
+        <aside id="batch-history-sidebar" class="batch-history-sidebar">
+            <div class="batch-history-section">
+                <div class="batch-history-section-title">即時測試紀錄</div>
+                <div id="batch-instant-empty-state" class="batch-history-empty-state">目前沒有執行中的測試</div>
+                <div id="batch-instant-list" class="batch-history-list"></div>
+            </div>
+            <div class="batch-history-section">
+                <div class="batch-history-section-title">歷史測試紀錄</div>
+                <div id="batch-history-empty-state" class="batch-history-empty-state">尚無測試紀錄</div>
+                <div id="batch-history-list" class="batch-history-list"></div>
+            </div>
+        </aside>
+    </div>
+
+    <!-- 載入所有 JavaScript 模組 -->
+    <script src="../cext.constants.js"></script>
+    <script src="../cext.context.js"></script>
+    <script src="../cext.storage.js"></script>
+    <script src="batchTest-config.js"></script>
+    <script src="../groovyCaller/groovyCaller.js"></script>
+    <script src="../logs/logs-config.js"></script>
+    <script src="../logs/logs-file-utils.js"></script>
+    <script src="batchTest-storage.js"></script>
+    <script src="../lib/jszip.min.js"></script>
+    <script src="../lib/exceljs.min.js"></script>
+    <script src="batchTest-export-utils.js"></script>
+    <script src="batchTest-api.js"></script>
+    <script src="batchTest-excel.js"></script>
+    <script src="batchTest-main.js"></script>
+    <script src="batchTest-events.js"></script>
+</body>
+
+</html>

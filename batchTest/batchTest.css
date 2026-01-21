@@ -1,0 +1,1082 @@
+/* ============================================
+   CSS 變數定義
+   ============================================ */
+:root {
+    --primary-blue: #0070C0;
+}
+
+/* ============================================
+   基礎樣式
+   ============================================ */
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    background: #f9fafb;
+    color: #111827;
+    margin: 0;
+}
+
+/* ============================================
+   Header 標題區域
+   ============================================ */
+
+header {
+    border-bottom: 1px solid #e5e7eb;
+    text-align: center;
+}
+
+header>div:first-child {
+    font-size: 24px;
+    font-weight: 700;
+    color: #111827;
+    letter-spacing: -0.5px;
+}
+
+#status {
+    font-size: 12px;
+    color: #666;
+    margin-top: 4px;
+}
+
+/* ============================================
+   主佈局區域 (.batch-main-layout)
+   ============================================ */
+
+.batch-main-layout {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px;
+    align-items: stretch;
+    padding: 20px 16px
+}
+
+/* ============================================
+   主內容區域 (.batch-main-content)
+   ============================================ */
+
+/* 表單與反饋包裝器 (.batch-form-feedback-wrapper) */
+.batch-form-feedback-wrapper {
+    display: flex;
+    gap: 24px;
+    align-items: stretch;
+    width: 100%;
+}
+
+.batch-form-feedback-wrapper .batch-form-wrapper {
+    flex: 1 1 auto;
+}
+
+.batch-form-feedback-wrapper.with-feedback .batch-form-wrapper {
+    flex: 0 0 96px;
+    max-width: 96px;
+}
+
+.batch-form-feedback-wrapper.with-feedback #batch-feedback-area {
+    display: flex;
+    flex: 1 1 auto;
+}
+
+/* ============================================
+   表單區域 (.batch-form-wrapper)
+   ============================================ */
+
+.batch-form-wrapper {
+    display: grid;
+    grid-template-rows: auto auto 1fr auto;
+    align-items: start;
+    gap: 16px;
+    width: 100%;
+    background: #f8fafc;
+    padding: 16px;
+    border-radius: 18px;
+    border: 2px solid #d0d7e6;
+    box-shadow: 0 4px 12px rgba(15, 23, 42, 0.08);
+    height: fit-content;
+}
+
+.batch-form-wrapper.testing {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: stretch;
+    gap: 0;
+    padding: 12px;
+    width: 108px;
+    flex: 0 0 108px;
+}
+
+.batch-form-wrapper.testing .batch-form-row {
+    display: none;
+}
+
+.batch-form-wrapper.testing .batch-form-item,
+.batch-form-wrapper.testing #batch-form-channel-wrapper,
+.batch-form-wrapper.testing textarea,
+.batch-form-wrapper.testing .batch-form-hint,
+.batch-form-wrapper.testing .batch-form-buttons {
+    display: none;
+}
+
+.batch-form-wrapper.testing .batch-form-actions {
+    justify-content: center;
+    width: 100%;
+}
+
+.batch-form-wrapper.testing .batch-form-actions {
+    display: flex;
+    width: 100%;
+}
+
+.batch-form-wrapper.testing #batch-btn-submit {
+    width: 100%;
+    min-width: 0;
+}
+
+/* 表單行 (.batch-form-row) */
+.batch-form-row {
+    display: flex;
+    flex-direction: column;
+    /* 垂直排列 */
+    gap: 16px;
+}
+
+/* 表單項目群組 (.batch-form-item-group) */
+.batch-form-item-group {
+    display: flex;
+    gap: 20px;
+    flex: 1 1 auto;
+}
+
+.batch-form-item-group .batch-form-item {
+    display: grid;
+    grid-template-columns: 1fr;
+    min-width: 0;
+    overflow: hidden;
+}
+
+.batch-form-item-group .batch-form-item label {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    min-width: 0;
+}
+
+/* 禁用狀態：表單項目群組 */
+.batch-form-item-group.disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+.batch-form-item-group.disabled .batch-form-item label {
+    background-color: #9ca3af;
+    color: #ffffff;
+}
+
+.batch-form-item-group.disabled input[type="text"],
+.batch-form-item-group.disabled input[type="number"],
+.batch-form-item-group.disabled select {
+    border: 2px solid #9ca3af;
+    background: #f3f4f6;
+    cursor: not-allowed !important;
+    pointer-events: none;
+}
+
+.batch-form-item-group.disabled input[type="text"]:hover,
+.batch-form-item-group.disabled input[type="number"]:hover,
+.batch-form-item-group.disabled select:hover {
+    border-color: #9ca3af;
+    cursor: not-allowed !important;
+}
+
+.batch-form-item-group .batch-form-item:nth-child(1),
+.batch-form-item-group .batch-form-item:nth-child(2) {
+    flex: 0 1 15%;
+}
+
+.batch-form-item-group .batch-form-item:nth-child(3) {
+    flex: 1 1 15%;
+}
+
+.batch-form-item-group .batch-form-item:nth-child(4) {
+    flex: 0 1 25%;
+}
+
+.batch-form-item-group .batch-form-item input[type="text"],
+.batch-form-item-group .batch-form-item input[type="number"],
+.batch-form-item-group .batch-form-item select {
+    min-width: 0;
+    max-width: 100%;
+    box-sizing: border-box;
+    width: 100%;
+}
+
+.batch-form-row .batch-form-item.batch-form-buttons {
+    display: flex;
+    gap: 16px;
+}
+
+/* 禁用狀態：按鈕群組 */
+.batch-form-item.batch-form-buttons.disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+.batch-form-item.batch-form-buttons.disabled button {
+    border-color: #9ca3af;
+    color: #9ca3af;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+.batch-form-item.batch-form-buttons.disabled button:hover {
+    border-color: #9ca3af;
+    color: #9ca3af;
+    background: #ffffff;
+    cursor: not-allowed;
+    opacity: 1;
+}
+
+.batch-form-row .batch-form-item.batch-form-buttons button {
+    flex: 0 1 20%;
+    padding: 8px 12px;
+    font-size: 14px;
+    color: var(--primary-blue);
+    background: #ffffff;
+    border: 2px solid var(--primary-blue);
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+}
+
+.batch-form-row .batch-form-item.batch-form-buttons button .button-icon {
+    flex-shrink: 0;
+    color: currentColor;
+    transition: 0.3s;
+}
+
+.batch-form-row .batch-form-item.batch-form-buttons button .button-icon .icon-outer {
+    transition: fill 0.3s, stroke 0.3s;
+}
+
+.batch-form-row .batch-form-item.batch-form-buttons button .button-icon .icon-middle {
+    fill: none;
+    transition: fill 0.3s;
+}
+
+.batch-form-row .batch-form-item.batch-form-buttons button .button-icon .icon-inner {
+    fill: none;
+    transition: fill 0.3s;
+}
+
+/* 默認狀態 hover */
+.batch-form-row .batch-form-item.batch-form-buttons button:hover:not(:disabled):not(.active) {
+    background: #ffffff;
+    opacity: 0.8;
+}
+
+.batch-form-row .batch-form-item.batch-form-buttons button:hover:not(:disabled):not(.active) .button-icon .icon-inner {
+    fill: #a1a1a1;
+}
+
+/* 點擊瞬間狀態 */
+.batch-form-row .batch-form-item.batch-form-buttons button:active:not(:disabled) {
+    background: #ffffff;
+}
+
+.batch-form-row .batch-form-item.batch-form-buttons button:active:not(:disabled) .button-icon .icon-outer {
+    fill: var(--primary-blue);
+    stroke: var(--primary-blue);
+}
+
+.batch-form-row .batch-form-item.batch-form-buttons button:active:not(:disabled) .button-icon .icon-middle {
+    fill: #ffffff;
+}
+
+.batch-form-row .batch-form-item.batch-form-buttons button:active:not(:disabled) .button-icon .icon-inner {
+    fill: var(--primary-blue);
+}
+
+/* 開關開啟狀態（active 類） */
+.batch-form-row .batch-form-item.batch-form-buttons button.active .button-icon .icon-outer {
+    fill: var(--primary-blue);
+    stroke: var(--primary-blue);
+}
+
+.batch-form-row .batch-form-item.batch-form-buttons button.active .button-icon .icon-middle {
+    fill: #ffffff;
+}
+
+.batch-form-row .batch-form-item.batch-form-buttons button.active .button-icon .icon-inner {
+    fill: var(--primary-blue);
+}
+
+/* 開啟狀態 hover 時保持藍色實心，不變灰 */
+.batch-form-row .batch-form-item.batch-form-buttons button.active:hover:not(:disabled) {
+    background: #ffffff;
+    opacity: 0.8;
+}
+
+.batch-form-row .batch-form-item.batch-form-buttons button.active:hover:not(:disabled) .button-icon .icon-outer {
+    fill: var(--primary-blue);
+    stroke: var(--primary-blue);
+}
+
+.batch-form-row .batch-form-item.batch-form-buttons button.active:hover:not(:disabled) .button-icon .icon-middle {
+    fill: #ffffff;
+}
+
+.batch-form-row .batch-form-item.batch-form-buttons button.active:hover:not(:disabled) .button-icon .icon-inner {
+    fill: var(--primary-blue);
+}
+
+.batch-form-row .batch-form-item.batch-form-buttons button:disabled {
+    background: #ffffff;
+    color: #a1a1a1;
+    border: 2px solid #a1a1a1;
+    cursor: not-allowed;
+}
+
+/* 表單項目 (.batch-form-item) */
+.batch-form-item label {
+    display: block;
+    font-size: 14px;
+    font-weight: bold;
+    color: #ffffff;
+    background-color: var(--primary-blue);
+    text-align: center;
+    padding: 4px;
+    border-radius: 6px 6px 0 0;
+}
+
+.batch-form-wrapper>.batch-form-item:last-of-type {
+    align-self: stretch;
+    display: flex;
+}
+
+.batch-form-wrapper>.batch-form-item:last-of-type textarea {
+    flex: 1;
+    height: 100%;
+}
+
+.batch-form-hint {
+    display: block;
+    margin-top: 4px;
+    font-size: 12px;
+    color: #6b7280;
+}
+
+/* 輸入欄位樣式 */
+input[type="text"],
+input[type="number"],
+select {
+    padding: 8px;
+    font-size: 14px;
+    border: 2px solid var(--primary-blue);
+    border-radius: 0 0 6px 6px;
+    background: white;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+input[type="text"]:focus,
+input[type="number"]:focus,
+select:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(5, 150, 105, 0.1);
+}
+
+#batch-select-channel {
+    width: 100%;
+}
+
+textarea {
+    width: calc(100% - 18px);
+    padding: 8px;
+    font-size: 14px;
+    border: 1px solid #d1d5db;
+    border-radius: 4px;
+    background: white;
+    font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+    resize: vertical;
+    min-height: calc(100vh - 408px);
+}
+
+textarea:disabled {
+    background: #f3f4f6;
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+/* 表格容器 */
+.batch-table-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    max-height: calc(100vh - 384px);
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+/* 禁用狀態：表格容器 */
+.batch-table-container.disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+.batch-table-container.disabled .batch-content-table {
+    pointer-events: none;
+    cursor: not-allowed;
+}
+
+.batch-table-container.disabled .batch-content-table td {
+    cursor: not-allowed !important;
+    pointer-events: none;
+}
+
+.batch-table-container.disabled .batch-content-table td:hover,
+.batch-table-container.disabled .batch-content-table td:focus {
+    background-color: transparent !important;
+    outline: none !important;
+    cursor: not-allowed !important;
+}
+
+.batch-table-container.disabled .batch-content-table td[contenteditable="true"] {
+    pointer-events: none;
+    cursor: not-allowed !important;
+}
+
+.batch-table-container.disabled .batch-content-table td[contenteditable="true"]:focus {
+    background-color: transparent !important;
+    outline: none !important;
+    cursor: not-allowed !important;
+}
+
+.batch-content-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    border: 2px solid var(--primary-blue);
+    border-radius: 6px;
+    overflow: hidden;
+    /* 確保圓角正確顯示 */
+    table-layout: fixed;
+    /* 固定表格佈局，讓寬度設定生效 */
+    outline: 2px solid var(--primary-blue);
+    outline-offset: -2px;
+}
+
+.batch-content-table thead {
+    background-color: var(--primary-blue);
+    color: #ffffff;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    pointer-events: none;
+}
+
+/* 禁用狀態：表格標題顯示灰底，border 變灰 */
+.batch-content-table.disabled {
+    border: 2px solid #9ca3af !important;
+    outline: 2px solid #9ca3af !important;
+}
+
+.batch-content-table.disabled thead {
+    background-color: #9ca3af;
+    color: #ffffff;
+}
+
+.batch-content-table th {
+    padding: 8px 12px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 14px;
+    border-right: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.batch-content-table th:last-child {
+    border-right: none;
+}
+
+/* 序號欄位固定 10% */
+.batch-content-table th:first-child,
+.batch-content-table td:first-child {
+    width: 10%;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    cursor: default;
+}
+
+/* 2欄時：測試問句 45%，另一欄 45% */
+.batch-content-table.cols-2 th:nth-child(2),
+.batch-content-table.cols-2 td:nth-child(2) {
+    width: 45%;
+}
+
+.batch-content-table.cols-2 th:nth-child(3),
+.batch-content-table.cols-2 td:nth-child(3) {
+    width: 45%;
+}
+
+/* 3欄時：測試問句 50%，另兩欄各 20% */
+.batch-content-table.cols-3 th:nth-child(2),
+.batch-content-table.cols-3 td:nth-child(2) {
+    width: 30%;
+}
+
+.batch-content-table.cols-3 th:nth-child(3),
+.batch-content-table.cols-3 td:nth-child(3),
+.batch-content-table.cols-3 th:nth-child(4),
+.batch-content-table.cols-3 td:nth-child(4) {
+    width: 30%;
+}
+
+.batch-content-table tbody tr {
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.batch-content-table tbody tr:last-child {
+    border-bottom: none;
+}
+
+.batch-content-table td {
+    padding: 8px 12px;
+    border-right: 1px solid #e5e7eb;
+    min-height: 32px;
+    /* 文字溢出省略 */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.batch-content-table td:last-child {
+    border-right: none;
+}
+
+.batch-content-table td[contenteditable="true"] {
+    outline: none;
+    cursor: text;
+}
+
+.batch-content-table td[contenteditable="true"]:focus {
+    background-color: #f0f9ff;
+    outline: 2px solid #ffffff;
+    outline-offset: -2px;
+    /* 保持一行顯示，不展開 */
+}
+
+.batch-content-table td[contenteditable="true"]:empty::before {
+    content: attr(data-placeholder);
+    color: #9ca3af;
+}
+
+/* 選中的單元格 */
+.batch-content-table td.cell-selected {
+    background-color: #bfdbfe !important;
+    outline: 2px solid #ffffff;
+    outline-offset: -2px;
+}
+
+.batch-content-table td.cell-selected:focus {
+    background-color: #93c5fd !important;
+    outline: 2px solid #ffffff;
+    outline-offset: -2px;
+}
+
+/* 彈出視窗樣式 */
+.batch-cell-tooltip {
+    position: fixed;
+    background-color: #1f2937;
+    color: #ffffff;
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-size: 14px;
+    max-width: 400px;
+    max-height: 300px;
+    overflow: auto;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    z-index: 10000;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    pointer-events: auto;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+.batch-cell-tooltip.visible {
+    opacity: 1;
+}
+
+
+/* 表單按鈕區域 (.batch-form-actions) */
+.batch-form-actions {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+}
+
+.batch-form-wrapper button {
+    padding: 10px;
+    background: var(--primary-blue);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    transition: background-color 0.2s;
+    min-width: 160px;
+}
+
+.batch-form-wrapper button[data-mode="continue"] {
+    background: #6b7280;
+}
+
+.batch-form-wrapper button[data-mode="continue"]:hover:not(:disabled) {
+    background: #4b5563;
+    opacity: 0.8;
+}
+
+.batch-form-wrapper button[data-mode="continue"]:active:not(:disabled) {
+    background: #374151;
+}
+
+.batch-form-wrapper button:hover:not(:disabled) {
+    background: var(--primary-blue);
+    opacity: 0.8;
+}
+
+.batch-form-wrapper button:active:not(:disabled) {
+    background: #1e40af;
+}
+
+.batch-form-wrapper button:disabled {
+    background: #9ca3af;
+    cursor: not-allowed;
+}
+
+/* ============================================
+   反饋區域 (#batch-feedback-area)
+   ============================================ */
+
+#batch-feedback-area {
+    flex: 1 1 auto;
+}
+
+.batch-feedback-area {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 16px;
+    border-radius: 18px;
+    background: #f3f4f6;
+    border: 2px solid #e5e7eb;
+}
+
+.batch-feedback-area.feedback-info {
+    background: #eff6ff;
+    border-color: #93c5fd;
+}
+
+.batch-feedback-area.feedback-success {
+    background: #f0fdf4;
+    border-color: #86efac;
+}
+
+.batch-feedback-area.feedback-error {
+    background: #fef2f2;
+    border-color: #fca5a5;
+}
+
+/* 反饋狀態區域 (.batch-feedback-status) */
+.batch-feedback-status {
+    margin-bottom: 12px;
+
+}
+
+.batch-feedback-text {
+    font-size: 14px;
+    font-weight: 500;
+    color: #374151;
+    margin-bottom: 8px;
+}
+
+.batch-feedback-area.feedback-info .batch-feedback-text {
+    color: #1e40af;
+}
+
+.batch-feedback-area.feedback-success .batch-feedback-text {
+    color: #166534;
+}
+
+.batch-feedback-area.feedback-error .batch-feedback-text {
+    color: #991b1b;
+}
+
+/* 進度條容器 (.batch-progress-container) */
+.batch-progress-container {
+    width: 100%;
+    height: 6px;
+    background: #e5e7eb;
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+.batch-progress-bar {
+    height: 100%;
+    background: linear-gradient(90deg, #3b82f6, #60a5fa);
+    border-radius: 3px;
+    transition: width 0.3s ease;
+    width: 0%;
+}
+
+.batch-feedback-area.feedback-success .batch-progress-bar {
+    background: linear-gradient(90deg, #10b981, #34d399);
+}
+
+.batch-feedback-area.feedback-error .batch-progress-bar {
+    background: linear-gradient(90deg, #ef4444, #f87171);
+}
+
+/* 反饋詳情區域 (.batch-feedback-details) */
+.batch-feedback-details {
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    max-height: calc(100vh - 200px);
+    scrollbar-gutter: stable both-edges;
+}
+
+.batch-feedback-detail {
+    font-size: 12px;
+    padding: 6px 12px;
+    border-radius: 4px;
+    background: white;
+    border-left: 3px solid #93c5fd;
+    transition: all 0.2s ease;
+}
+
+.batch-feedback-detail-processing {
+    border-left-color: #3b82f6;
+    background: #eff6ff;
+}
+
+.batch-feedback-detail-completed {
+    border-left-color: #10b981;
+    background: #f0fdf4;
+}
+
+.batch-feedback-detail-error {
+    border-left-color: #ef4444;
+    background: #fef2f2;
+    color: #991b1b;
+}
+
+.batch-feedback-details::-webkit-scrollbar {
+    width: 6px;
+}
+
+.batch-feedback-details::-webkit-scrollbar-track {
+    background: #f3f4f6;
+    border-radius: 3px;
+}
+
+.batch-feedback-details::-webkit-scrollbar-thumb {
+    background: #d1d5db;
+    border-radius: 3px;
+}
+
+.batch-feedback-details::-webkit-scrollbar-thumb:hover {
+    background: #9ca3af;
+}
+
+/* ============================================
+   歷史紀錄側邊欄 (#batch-history-sidebar)
+   ============================================ */
+
+#batch-history-sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    background: #f8fafc;
+    border: 2px solid #d0d7e6;
+    border-radius: 18px;
+    padding: 16px;
+    box-shadow: 0 4px 12px rgba(15, 23, 42, 0.08);
+}
+
+/* 歷史紀錄區塊 (.batch-history-section) */
+.batch-history-section {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.batch-history-section-title {
+    font-size: 14px;
+    font-weight: 700;
+    color: #0f172a;
+}
+
+/* 歷史紀錄列表 (.batch-history-list) */
+.batch-history-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    overflow-y: auto;
+}
+
+#batch-history-list {
+    max-height: calc(100vh - 296px);
+}
+
+#batch-instant-empty-state,
+#batch-instant-list {
+    display: none;
+}
+
+/* 空狀態 (.batch-history-empty-state) */
+.batch-history-empty-state {
+    display: block;
+    padding: 16px;
+    border: 2px dashed #cbd5f5;
+    border-radius: 10px;
+    text-align: center;
+    color: #94a3b8;
+    font-size: 14px;
+    height: 79px;
+    width: calc(95% - 24px);
+}
+
+/* 歷史紀錄項目 (.batch-history-item) */
+.batch-history-item {
+    background: #ffffff;
+    border: 2px solid #cbd5f5;
+    border-radius: 10px;
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    box-shadow: 0 2px 4px rgba(15, 23, 42, 0.08);
+    position: relative;
+}
+
+/* 測試中的項目外層容器 - 動畫層（與內容分離，避免刷新時跳動） */
+.batch-history-item-wrapper-testing {
+    position: relative;
+    padding: 4px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    width: calc(100% - 24px);
+    overflow: visible;
+    background: transparent;
+}
+
+/* 線性漸變邊框層 - 從右往左平滑推進，帶高光點 */
+.batch-history-item-wrapper-testing::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    padding: 4px;
+    border-radius: 10px;
+    background: linear-gradient(135deg,
+            #ffffff 0%,
+            #ffffff 2%,
+            #dbeafe 4%,
+            #bfdbfe 8%,
+            #93c5fd 14%,
+            #60a5fa 22%,
+            #3b82f6 32%,
+            #2563eb 44%,
+            #1e40af 58%,
+            #ffffff 60%,
+            #ffffff 100%);
+    background-size: 200% 100%;
+    animation: border-slide 3s cubic-bezier(0.42, 0, 0.58, 1) infinite;
+    z-index: 1;
+    pointer-events: none;
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask-composite: exclude;
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+}
+
+/* 內層白色背景遮擋中間部分，只顯示邊框 */
+.batch-history-item-wrapper-testing>.batch-history-item-current::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: #ffffff;
+    border-radius: 6px;
+    z-index: 0;
+    pointer-events: none;
+}
+
+/* 測試中的項目 - 實際內容層 */
+.batch-history-item-wrapper-testing>.batch-history-item-current {
+    position: relative;
+    z-index: 2;
+    border: none;
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    background: transparent;
+    border-radius: 6px;
+    width: 100%;
+    box-sizing: border-box;
+    margin: 0;
+}
+
+.batch-history-item-wrapper-testing>.batch-history-item-current>* {
+    position: relative;
+    z-index: 1;
+}
+
+
+/* 邊框漸變從右往左推進動畫 */
+@keyframes border-slide {
+    from {
+        background-position: 200% 0;
+    }
+
+    to {
+        background-position: 0% 0;
+    }
+}
+
+.batch-history-item-current .batch-history-meta {
+    font-weight: bold;
+    color: var(--primary-blue);
+}
+
+.batch-history-item-history {
+    flex-direction: row;
+    align-items: stretch;
+    gap: 16px;
+    width: calc(95% - 6px);
+}
+
+/* 歷史紀錄資訊 (.batch-history-info) */
+.batch-history-item-history .batch-history-info {
+    flex: 1 1 70%;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.batch-history-meta {
+    font-size: 14px;
+    color: #0f172a;
+    line-height: 1.4;
+}
+
+.batch-history-meta-sub {
+    font-size: 12px;
+    color: #475569;
+}
+
+/* 歷史紀錄按鈕容器 (.batch-history-button-container) */
+.batch-history-button-container {
+    flex: 0 0 30%;
+    display: flex;
+    gap: 16px;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.batch-history-button-container button {
+    flex: 1 1 50%;
+    padding: 10px 12px;
+    font-size: 14px;
+    border: none;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    color: #ffffff;
+    background: var(--primary-blue);
+    transition: opacity 0.2s ease;
+}
+
+.batch-history-button-container button[data-style="secondary"] {
+    background: #ef4444;
+}
+
+.batch-history-button-container button[data-style="secondary"]:hover {
+    opacity: 0.8;
+}
+
+.batch-history-button-container button[data-variant="instant"] {
+    background: #f97316;
+}
+
+.batch-history-button-container button[data-variant="instant"]:hover {
+    background: #ea580c;
+    opacity: 0.8;
+}
+
+.batch-history-button-container button:hover {
+    opacity: 0.8;
+}
+
+/* 歷史紀錄操作按鈕 (.batch-history-actions) */
+.batch-history-actions {
+    display: flex;
+    gap: 8px;
+}
+
+#batch-instant-list .batch-history-actions {
+    justify-content: flex-start;
+}
+
+#batch-instant-list .batch-instant-download-btn {
+    width: 70%;
+}
+
+.batch-history-actions-inline {
+    display: inline-flex;
+}
+
+.batch-history-actions button {
+    flex: 1;
+    padding: 6px 10px;
+    font-size: 14px;
+    border: none;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    color: #ffffff;
+    background: var(--primary-blue);
+    transition: opacity 0.2s ease;
+}
+
+.batch-history-actions button[data-style="secondary"] {
+    background: #64748b;
+}
+
+.batch-history-actions button[data-action="history-remove"]:hover,
+.batch-history-actions button[data-action="instant-discard"]:hover {
+    background: #f87171;
+    opacity: 0.8;
+}
+
+.batch-history-actions button[data-variant="instant"] {
+    background: #f97316;
+}
+
+.batch-history-actions button[data-variant="instant"]:hover {
+    background: #ea580c;
+    opacity: 0.8;
+}
+
+.batch-history-actions button:hover {
+    opacity: 0.8;
+}
