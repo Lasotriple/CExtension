@@ -1,4 +1,4 @@
-/* logs-logsBeauty.js */
+/* logs-logsBeauty.js gogo*/
 
 const logsBeauty = {};
 
