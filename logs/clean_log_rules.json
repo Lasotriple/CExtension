@@ -10,7 +10,7 @@
         "com.intumit.solr.robot.QAUtil.addToUserDefinedForest",
         "com.intumit.quartz.SyncAzureADJob",
         "com.intumit.smartrobot.faq.impl.RedisFaqVectorServiceImpl.searchByVector(RedisFaqVectorServiceImpl.java:169)",
-        "org.springframework.web.method.HandlerMethod",
+        "org.springframework.web.method.HandlerMethod", 
         "/\\[INFO\\] - org\\.apache\\.solr\\.core\\.SolrCore\\.execute\\(SolrCore\\.java:(\\d+)\\) - webapp=null path=\\/(browse|select) params/",
         "/\\[INFO\\] - com\\.intumit\\.smartrobot\\.faq\\.impl\\.RedisFaqVectorServiceImpl\\.searchByVector\\(RedisFaqVectorServiceImpl\\.java:(\\d+)\\) - (?!QA found for kid).*/",
         "/\\[INFO\\] - com\\.intumit\\.smartrobot\\.faq\\.impl\\.SolrFaqVectorServiceImpl\\.searchByVector\\(SolrFaqVectorServiceImpl\\.java:(\\d+)\\) - faq query: dataType_s:\"FAQ_VECTOR_INDEX\" AND tenant_i:(\\d+) vector:/",
