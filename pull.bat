@@ -1,2 +1,2 @@
 @echo off
-git pull
+git fetch && git reset --hard origin/main
