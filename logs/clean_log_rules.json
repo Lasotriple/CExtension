@@ -79,7 +79,7 @@
         },
         {
             "pattern": "(?s)^(\\s*)\"embedding\": \\[.*?\\],\\s*$",
-            "replacement": "$1\"embedding\": [...]"
+            "replacement": "$1\"embedding\": [lineReplacer skip...]"
         }
     ]
 }
